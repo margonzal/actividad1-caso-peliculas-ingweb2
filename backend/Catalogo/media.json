@@ -1,0 +1,14 @@
+[
+ {
+  "titulo": "Inception",
+  "sinopsis": "Un ladrón roba secretos dentro de sueños",
+  "anioEstreno": 2010,
+  "estado": "Activo"
+ },
+ {
+  "titulo": "Jurassic Park",
+  "sinopsis": "Un parque de dinosaurios clonados se sale de control",
+  "anioEstreno": 1993,
+  "estado": "Activo"
+ }
+]

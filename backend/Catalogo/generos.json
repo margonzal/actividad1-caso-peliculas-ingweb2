@@ -1,0 +1,5 @@
+[
+ { "nombre": "Acción", "estado": "Activo" },
+ { "nombre": "Comedia", "estado": "Activo" },
+ { "nombre": "Drama", "estado": "Activo" }
+]
