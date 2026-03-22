@@ -8,6 +8,9 @@ const MediaSchema = Schema({
     sinopsis: {
         type: String
     },
+    imagen: {
+    type: String
+    },
     genero: {
         type: Schema.Types.ObjectId,
         ref: 'Genero'

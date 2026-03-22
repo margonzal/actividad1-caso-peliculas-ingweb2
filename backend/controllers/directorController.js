@@ -1,17 +1,68 @@
+const { request, response } = require('express');
 const Director = require('../models/Director');
 
-const getDirectores = async (req, res) => {
-    const directores = await Director.find();
-    res.json(directores);
+const getDirectores = async (req = request, res = response) => {
+    try {
+        const directores = await Director.find();
+        res.status(200).json(directores);
+    } catch (error) {
+        console.error('Error al obtener directores:', error);
+        res.status(500).json({ msg: 'Error al listar directores' });
+    }
 }
 
-const createDirector = async (req, res) => {
-    const director = new Director(req.body);
-    await director.save();
-    res.json(director);
+const createDirector = async (req = request, res = response) => {
+    try {
+        const { nombre } = req.body;
+
+        const directorDB = await Director.findOne({ nombre });
+        if (directorDB) {
+            return res.status(400).json({ msg: `El director "${nombre}" ya existe` });
+        }
+
+        const director = new Director(req.body);
+        await director.save();
+
+        res.status(201).json(director);
+    } catch (error) {
+        console.error('Error al crear director:', error);
+        res.status(500).json({ msg: 'Error al guardar el director' });
+    }
+}
+
+const updateDirector = async (req = request, res = response) => {
+    try {
+        const { id } = req.params;
+
+        const director = await Director.findByIdAndUpdate(
+            id,
+            req.body,
+            { new: true }
+        );
+
+        res.status(200).json(director);
+    } catch (error) {
+        console.error('Error al actualizar director:', error);
+        res.status(500).json({ msg: 'Error al actualizar director' });
+    }
+}
+
+const deleteDirector = async (req = request, res = response) => {
+    try {
+        const { id } = req.params;
+
+        await Director.findByIdAndDelete(id);
+
+        res.status(200).json({ msg: 'Director eliminado' });
+    } catch (error) {
+        console.error('Error al eliminar director:', error);
+        res.status(500).json({ msg: 'Error al eliminar director' });
+    }
 }
 
 module.exports = {
     getDirectores,
-    createDirector
+    createDirector,
+    updateDirector,
+    deleteDirector
 };
