@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const API = "http://localhost:4000/api/media";
+const API_URL = "https://caso-estudio-peliculas-ingweb2.onrender.com/api/media";
 
-export const getMedias = () => axios.get(API);
+export const getMedias = () => axios.get(API_URL);
 
-export const createMedia = (data) => axios.post(API, data);
+export const createMedia = (data) => axios.post(API_URL, data);
 
-export const updateMedia = (id, data) => axios.put(`${API}/${id}`, data);
+export const updateMedia = (id, data) => axios.put(`${API_URL}/${id}`, data);
 
-export const deleteMedia = (id) => axios.delete(`${API}/${id}`);
+export const deleteMedia = (id) => axios.delete(`${API_URL}/${id}`);
