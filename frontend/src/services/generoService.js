@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "https://caso-estudio-peliculas-ingweb2.onrender.com/api/generos";
+const API_URL = "https://caso-estudio-peliculas-ingweb2.onrender.com/api/genero";
 
 export const getGeneros = () => axios.get(API_URL);
 
