@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 
+const path = require('path');
 const { getConnection } = require('./db/db-connection-mongo');
 
 const app = express();
@@ -16,6 +17,13 @@ app.use('/api/director', require('./routes/director'));
 app.use('/api/productora', require('./routes/productora'));
 app.use('/api/tipo', require('./routes/tipo'));
 app.use('/api/media', require('./routes/media'));
+
+// Servir el frontend de React
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
 
 getConnection();
 
